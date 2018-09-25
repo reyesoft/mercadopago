@@ -18,7 +18,8 @@
     "php": ">=7.1",
     "endroid/qr-code": "^3.2",
     "ext-gd": "*",
-    "mercadopago/dx-php": "dev-master"
+    "mercadopago/dx-php": "dev-master",
+    "mercadopago/sdk": "0.5.2"
   },
   "require-dev": {
     "reyesoft/ci": "0.1.3",
@@ -30,12 +31,12 @@
       "src/"
     ],
     "psr-4": {
-      "MercadoPago\\": "src/"
+      "MercadoPagoQr\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "MercadoPago\\Tests\\": "tests/"
+      "MercadoPagoQr\\Tests\\": "tests/"
     }
   }
 }
