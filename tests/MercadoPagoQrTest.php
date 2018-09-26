@@ -44,8 +44,6 @@ class MercadoPagoQrTest extends TestCase
 
         $qr->getQrCode()->writeFile($filename);
 
-        print_r($qr->getQrCode()->getText());
-
         $image = imagecreatefromstring(file_get_contents($filename));
 
         $this->assertTrue(is_resource($image));
