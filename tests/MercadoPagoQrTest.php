@@ -34,12 +34,17 @@ class MercadoPagoQrTest extends TestCase
             )
         );
 
-        $filename = '/home/juan/Imágenes/mercadopago-qr-code.png';
+        $client_id = '3282634683852359';
+        $client_secret = 'BAB5nUMycs4Nhpy5itEoGHMNrF2fklUR';
+
+        $filename = __DIR__ . '/image/mercadopago-qr-code.png';
 
         /** @var MercadoPagoQr $object */
-        $qr = new MercadoPagoQr($preference_data);
+        $qr = new MercadoPagoQr($preference_data, $client_id, $client_secret);
 
         $qr->getQrCode()->writeFile($filename);
+
+        print_r($qr->getQrCode()->getText());
 
         $image = imagecreatefromstring(file_get_contents($filename));
 
