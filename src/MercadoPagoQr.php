@@ -28,32 +28,28 @@ class MercadoPagoQr
     /**
      * MercadoPagoQr constructor.
      * @param array $preference_data
-     * @param $pos_id
+     * @param $client_id
+     * @param $client_secret
      * @throws \MercadoPagoException
      */
-    public function __construct(array $preference_data)
+    public function __construct(array $preference_data, $client_id, $client_secret)
     {
         $this->qr_code = new QrCode();
-        $this->setSDKAccessToken();
-        $this->createMPClient();
+        $this->createMPClient($client_id, $client_secret);
         $this->setPreference($preference_data);
         $this->setCollectorId();
         $this->setPosId();
         $this->setUrl('https://mercadopago.com/s/qr/');
     }
 
-    private function setSDKAccessToken(): void
-    {
-        SDK::setAccessToken("TEST-6533649929268021-092411-ff5874d11f4ab7c9b3f814c1024acc40-180653157");
-    }
-
     /**
+     * @param $client_id
+     * @param $client_secret
      * @throws \MercadoPagoException
      */
-    private function createMPClient(): void
+    private function createMPClient($client_id, $client_secret): void
     {
-        $mp_client = new MP('6533649929268021', 'zKXIDFQNMl9aBppst4J7d3PZIxXWC8bm');
-        $this->mp = new MP($mp_client->get_access_token());
+        $this->mp = new MP($client_id, $client_secret);
     }
 
     private function setPreference($preference_data): void
