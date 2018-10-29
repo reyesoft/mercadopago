@@ -30,12 +30,12 @@
       "src/"
     ],
     "psr-4": {
-      "MercadoPago\\": "src/"
+      "MercadoPagoQr\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "MercadoPago\\Tests\\": "tests/"
+      "MercadoPagoQr\\Tests\\": "tests/"
     }
   }
 }
