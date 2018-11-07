@@ -33,7 +33,6 @@ class MercadoPagoQr
     /**
      * MercadoPagoQr constructor.
      *
-     * @param array $preference_data
      * @param string $client_id
      * @param string $client_secret
      *
@@ -72,7 +71,7 @@ class MercadoPagoQr
 
     public function setPosId(): void
     {
-        /** @todo search pos_id */
+        /* @todo search pos_id */
         $this->pos_id = random_int(1000, 9999);
     }
 
