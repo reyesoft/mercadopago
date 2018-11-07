@@ -33,12 +33,13 @@ class MercadoPagoQr
     /**
      * MercadoPagoQr constructor.
      *
+     * @param array $preference_data
      * @param string $client_id
      * @param string $client_secret
      *
      * @throws \MercadoPagoException
      */
-    public function __construct(array $preference_data, $client_id, $client_secret)
+    public function __construct($preference_data, $client_id, $client_secret)
     {
         $this->qr_code = new QrCode();
         $this->createMPClient($client_id, $client_secret);
