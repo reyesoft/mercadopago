@@ -1,11 +1,16 @@
 <?php
+/**
+ * Copyright (C) 1997-2018 Reyesoft <info@reyesoft.com>.
+ *
+ * This file is part of CryptoQr. CryptoQr can not be copied and/or
+ * distributed without the express permission of Reyesoft
+ */
+
+declare(strict_types=1);
 
 namespace MercadoPagoQr;
 
 use Endroid\QrCode\QrCode;
-use MercadoPago\Payment;
-use MercadoPago\Preference;
-use MercadoPago\SDK;
 use MP;
 
 class MercadoPagoQr
@@ -27,12 +32,14 @@ class MercadoPagoQr
 
     /**
      * MercadoPagoQr constructor.
+     *
      * @param array $preference_data
-     * @param $client_id
-     * @param $client_secret
+     * @param string $client_id
+     * @param string $client_secret
+     *
      * @throws \MercadoPagoException
      */
-    public function __construct(array $preference_data, $client_id, $client_secret)
+    public function __construct($preference_data, $client_id, $client_secret)
     {
         $this->qr_code = new QrCode();
         $this->createMPClient($client_id, $client_secret);
@@ -43,8 +50,9 @@ class MercadoPagoQr
     }
 
     /**
-     * @param $client_id
-     * @param $client_secret
+     * @param string $client_id
+     * @param string $client_secret
+     *
      * @throws \MercadoPagoException
      */
     private function createMPClient($client_id, $client_secret): void
@@ -57,17 +65,18 @@ class MercadoPagoQr
         $this->preference = $this->mp->create_preference($preference_data);
     }
 
-    public function setCollectorId()
+    public function setCollectorId(): void
     {
         $this->collector_id = $this->preference['response']['collector_id'];
     }
 
-    public function setPosId()
+    public function setPosId(): void
     {
-        $this->pos_id = rand(1000, 9999);
+        /* @todo search pos_id */
+        $this->pos_id = random_int(1000, 9999);
     }
 
-    public function setUrl(string $url)
+    public function setUrl(string $url): void
     {
         $this->url = $url . $this->getCollectorId() . '/' . $this->getPosId();
         $this->getQrCode()->setText($this->url);
