@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace MercadoPagoQr;
 
 use Endroid\QrCode\QrCode;
+use MercadoPago\Preference;
 use MP;
 
 class MercadoPagoQr
@@ -39,7 +40,7 @@ class MercadoPagoQr
      *
      * @throws \MercadoPagoException
      */
-    public function __construct(array $preference_data, $client_id, $client_secret)
+    public function __construct($preference_data, $client_id, $client_secret)
     {
         $this->qr_code = new QrCode();
         $this->createMPClient($client_id, $client_secret);
@@ -72,7 +73,7 @@ class MercadoPagoQr
 
     public function setPosId(): void
     {
-        /** @todo search pos_id */
+        /* @todo search pos_id */
         $this->pos_id = random_int(1000, 9999);
     }
 
