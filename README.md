@@ -36,7 +36,7 @@ print_r($qr->getQrCode()->getText());
 
 This generates a qr code like that:
 
-![mercadopago-qr](url "Mercadopago QR generated with MercadoPagoQr library")
+![mercadopago-qr](https://github.com/reyesoft/mercadopago/blob/master/tests/image/mercadopago-qr-code.png?raw=true "Mercadopago QR generated with MercadoPagoQr library")
 
 
 
