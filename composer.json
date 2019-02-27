@@ -1,6 +1,6 @@
 {
   "name": "reyesoft/mercadopago",
-  "description": "This library helps to make payments through MercadoPago",
+  "description": "This library helps to make payments through MercadoPago, even with QR",
   "type": "library",
   "keywords": ["qrcode", "payments", "mercadopago api", "reyesoft"],
   "homepage": "https://github.com/reyesoft/mercadopago",
