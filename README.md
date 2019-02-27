@@ -7,7 +7,7 @@ This library helps you generate a QR code to make payments through Mercadopago, 
 
 ## Installation
 
-``` bash
+```bash
 composer require reyesoft/mercadopago
 ```
 
