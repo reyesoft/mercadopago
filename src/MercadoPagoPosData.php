@@ -40,14 +40,14 @@ class MercadoPagoPosData
         return $this;
     }
 
-    public function setCategory(string $category): self
+    public function setCategory(?string $category): self
     {
         $this->category = $category;
 
         return $this;
     }
 
-    public function setStoreId(int $store_id): self
+    public function setStoreId(?int $store_id): self
     {
         $this->store_id = $store_id;
 

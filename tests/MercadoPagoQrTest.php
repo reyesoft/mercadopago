@@ -19,11 +19,11 @@ class MercadoPagoQrTest extends TestCase
     public static $mp = null;
     public static $location_mp = null;
 
-    public static function getMp(): \MP
+    public static function getMp($client_token = 'BAB5nUMycs4Nhpy5itEoGHMNrF2fklUR'): \MP
     {
         $GLOBALS['LIB_LOCATION'] = self::$location_mp;  // fix problem on library
         if (self::$mp === null) {
-            self::$mp = new \MP('3282634683852359', 'BAB5nUMycs4Nhpy5itEoGHMNrF2fklUR');
+            self::$mp = new \MP('3282634683852359', $client_token);
             // self::$mp = new \MP('your_access_token');
             self::$location_mp = $GLOBALS['LIB_LOCATION'];
         }
@@ -37,7 +37,10 @@ class MercadoPagoQrTest extends TestCase
 
         $pos->getPosData()
             ->setExternalId('MyTestPos' . random_int(1, 1000) . time())
-            ->setName('My MercadoPago POS of testing');
+            ->setName('My MercadoPago POS of testing')
+            ->setFixedAmount(false)
+            ->setCategory(null)
+            ->setStoreId(null);
 
         $created = $pos->createOrFail();
 
@@ -51,7 +54,8 @@ class MercadoPagoQrTest extends TestCase
      */
     public function testTryToCreateARepeatedPosQr(string $pos_id): void
     {
-        $pos = new MercadoPagoPos(self::getMp(), $pos_id);
+        $pos = new MercadoPagoPos(self::getMp());
+        $pos->getPosData()->setExternalId($pos_id);
 
         $this->expectExceptionMessage('Point of sale with corresponding user and id exists');
         $pos->createOrFail();

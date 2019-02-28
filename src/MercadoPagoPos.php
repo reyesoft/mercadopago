@@ -29,7 +29,7 @@ class MercadoPagoPos
     {
         $this->data = new MercadoPagoPosData();
         $this->qr_code = new QrCode();
-        $this->mp = $mp;
+        $this->setMp($mp);
         $this->data = new MercadoPagoPosData($pos_external_id);
     }
 
@@ -54,13 +54,18 @@ class MercadoPagoPos
             return $this->createOrFail();
         } catch (\MercadoPagoException $e) {
             // created
+            // @todo
+            // @coverageIgnoreStart
             if ($e->getMessage() === 'Point of sale with corresponding user and id exists') {
                 return true;
             } else {
                 throw new $e();
             }
+            // @coverageIgnoreEnd
         } catch (\Exception $e) {
+            // @coverageIgnoreStart
             throw new $e();
+            // @coverageIgnoreEnd
         }
     }
 
