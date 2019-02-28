@@ -46,7 +46,7 @@ class MercadoPagoQr
         $this->createMPClient($client_id, $client_secret);
         $this->setPreference($preference_data);
         $this->setCollectorId();
-        $this->setPosId();
+        $this->setPosId('2');
         $this->setUrl('https://mercadopago.com/s/qr/');
     }
 
@@ -71,10 +71,9 @@ class MercadoPagoQr
         $this->collector_id = $this->preference['response']['collector_id'];
     }
 
-    public function setPosId(): void
+    public function setPosId(string $pos_id): void
     {
-        /* @todo search pos_id */
-        $this->pos_id = random_int(1000, 9999);
+        $this->pos_id = $pos_id;
     }
 
     public function setUrl(string $url): void
