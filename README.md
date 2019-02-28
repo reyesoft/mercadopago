@@ -2,8 +2,14 @@
 
 *By [Reyesoft](http://reyesoft.com/)*
 
-This library helps you generate a QR code to make payments through Mercadopago. Makes use of [endroid/qr-code]
+This library helps you generate a QR code to make payments through Mercadopago, even with QR code. Makes use of [endroid/qr-code]
 (https://github.com/endroid/qr-code) and [mercadopago/dx-php](https://github.com/mercadopago/dx-php)
+
+## Installation
+
+```bash
+composer require reyesoft/mercadopago
+```
 
 ## Usage
 
