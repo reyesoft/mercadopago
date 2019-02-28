@@ -52,21 +52,19 @@ class MercadoPagoPos
     {
         try {
             return $this->createOrFail();
+            // @todo
+            // @codeCoverageIgnoreStart
         } catch (\MercadoPagoException $e) {
             // created
-            // @todo
-            // @coverageIgnoreStart
             if ($e->getMessage() === 'Point of sale with corresponding user and id exists') {
                 return true;
             } else {
                 throw new $e();
             }
-            // @coverageIgnoreEnd
         } catch (\Exception $e) {
-            // @coverageIgnoreStart
             throw new $e();
-            // @coverageIgnoreEnd
         }
+        // @codeCoverageIgnoreEnd
     }
 
     public function getQrCode($collector_id = null): QrCode
