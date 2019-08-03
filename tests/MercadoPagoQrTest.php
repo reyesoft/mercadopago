@@ -10,30 +10,33 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr\Tests;
 
+use MercadoPago\SDK;
 use MercadoPagoQr\MercadoPagoPos;
 use MercadoPagoQr\MercadoPagoQr;
 use PHPUnit\Framework\TestCase;
 
 class MercadoPagoQrTest extends TestCase
 {
-    public static $mp = null;
     public static $location_mp = null;
 
-    public static function getMp($client_token = 'BAB5nUMycs4Nhpy5itEoGHMNrF2fklUR'): \MP
+    public function initializeMercadoPagoSdk(): void
     {
-        $GLOBALS['LIB_LOCATION'] = self::$location_mp;  // fix problem on library
-        if (self::$mp === null) {
-            self::$mp = new \MP('3282634683852359', $client_token);
-            // self::$mp = new \MP('your_access_token');
-            self::$location_mp = $GLOBALS['LIB_LOCATION'];
-        }
-
-        return self::$mp;
+//        $GLOBALS['LIB_LOCATION'] = self::$location_mp;  // fix problem on library
+//        if (self::$mp === null) {
+//            // self::$mp = new \MP('3282634683852359', $client_secret);
+//            // self::$mp = new \MP('your_access_token');
+//            self::$location_mp = $GLOBALS['LIB_LOCATION'];
+//
+//        }
+        SDK::setClientId('3282634683852359');
+        SDK::setClientSecret('BAB5nUMycs4Nhpy5itEoGHMNrF2fklUR');
     }
 
     public function testCreateAPosQr(): string
     {
-        $pos = new MercadoPagoPos(self::getMp());
+        $this->initializeMercadoPagoSdk();
+
+        $pos = new MercadoPagoPos();
 
         $pos->getPosData()
             ->setExternalId('MyTestPos' . random_int(1, 1000) . time())
@@ -54,7 +57,9 @@ class MercadoPagoQrTest extends TestCase
      */
     public function testTryToCreateARepeatedPosQr(string $pos_id): void
     {
-        $pos = new MercadoPagoPos(self::getMp());
+        $this->initializeMercadoPagoSdk();
+
+        $pos = new MercadoPagoPos();
         $pos->getPosData()->setExternalId($pos_id);
 
         $this->expectExceptionMessage('Point of sale with corresponding user and id exists');
@@ -63,7 +68,9 @@ class MercadoPagoQrTest extends TestCase
 
     public function testCreateTestPos(): void
     {
-        $pos = new MercadoPagoPos(self::getMp(), 'MyTestPos');
+        $this->initializeMercadoPagoSdk();
+
+        $pos = new MercadoPagoPos('MyTestPos');
 
         $pos->getPosData()
             ->setName('My MercadoPago POS of testing');
@@ -78,7 +85,9 @@ class MercadoPagoQrTest extends TestCase
      */
     public function testCreateQr(): void
     {
-        $pos = new MercadoPagoPos(self::getMp(), 'MyTestPos');
+        $this->initializeMercadoPagoSdk();
+
+        $pos = new MercadoPagoPos('MyTestPos');
         $filename = __DIR__ . '/image/mercadopago-qr-code.png';
         $pos->getQrCode()->writeFile($filename);
 
@@ -92,7 +101,9 @@ class MercadoPagoQrTest extends TestCase
      */
     public function testCreateAnOrderForTestPos(): void
     {
-        $pos = new MercadoPagoPos(self::getMp(), 'MyTestPos');
+        $this->initializeMercadoPagoSdk();
+
+        $pos = new MercadoPagoPos('MyTestPos');
 
         $order_data = [
             'external_reference' => 'id_interno',

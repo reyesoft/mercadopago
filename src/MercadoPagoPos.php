@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace MercadoPagoQr;
 
 use Endroid\QrCode\QrCode;
+use MercadoPago\Pos as Pos;
 
 /**
  * @see https://www.mercadopago.com.ar/developers/en/guides/instore-payments/qr-payments/qr-pos/ "Create QR"
@@ -25,12 +26,14 @@ class MercadoPagoPos
     /** @var MercadoPagoPosData */
     protected $data;
 
-    public function __construct(\MP $mp, $pos_external_id = '')
+    /** @var POS */
+    protected $pos;
+
+    public function __construct(string $pos_external_id = '')
     {
-        $this->data = new MercadoPagoPosData();
         $this->qr_code = new QrCode();
-        $this->setMp($mp);
         $this->data = new MercadoPagoPosData($pos_external_id);
+        $this->pos = new Pos();
     }
 
     public function getPosData(): MercadoPagoPosData
@@ -38,14 +41,30 @@ class MercadoPagoPos
         return $this->data;
     }
 
-    /**
-     * @throws \MercadoPagoException
-     */
+//    public function getPos(): POS
+//    {
+//        return $this->pos;
+//    }
+
     public function createOrFail(): bool
     {
-        $this->mp->post('/pos', $this->data->getDataArray());
+        $pos = new POS();
+        $pos->name = $this->data->getName();
+        $pos->external_id = $this->data->getExternalId();
+        $pos->store_id = $this->data->getStoreId();
+        $pos->fixed_amount = $this->data->getFixedAmount();
+        $pos->category = $this->data->getCategory();
+        $pos->save();
 
-        return true;
+        if ($pos->Error() === null) {
+            return true;
+        }
+
+        throw new MercadoPagoQrException(
+                        $pos->Error()->message
+                        . ' (' . $pos->Error()->error . ')'
+                        . ' (' . $pos->Error()->status . ')'
+                    );
     }
 
     public function checkOrCreate(): bool
@@ -54,9 +73,9 @@ class MercadoPagoPos
             return $this->createOrFail();
             // @todo
             // @codeCoverageIgnoreStart
-        } catch (\MercadoPagoException $e) {
+        } catch (MercadoPagoQrException $e) {
             // created
-            if ($e->getMessage() === 'Point of sale with corresponding user and id exists') {
+            if (strpos($e->getMessage(), 'point_of_sale_exists') > 0) {
                 return true;
             } else {
                 throw new $e();
@@ -82,6 +101,6 @@ class MercadoPagoPos
 
     public function createAnOrder()
     {
-        return new MercadoPagoOrder($this, $this->mp);
+        return new MercadoPagoOrder($this);
     }
 }

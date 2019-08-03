@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr;
 
+use MercadoPago\InstoreOrder;
+
 /**
  * @see https://www.mercadopago.com.ar/developers/en/guides/instore-payments/qr-payments/qr-pos/ "Order object"
  */
@@ -22,21 +24,47 @@ class MercadoPagoOrder
     /** @var MercadoPagoPos */
     protected $pos;
 
-    public function __construct(MercadoPagoPos $pos, \MP $mp)
+    /** @var InstoreOrder */
+    protected $order;
+
+    public function __construct(MercadoPagoPos $pos)
     {
         $this->pos = $pos;
-        $this->mp = $mp;
+        $this->order = new InstoreOrder();
+    }
+
+    public function setId(string $value): void
+    {
+        $this->order->id = $value;
+    }
+
+    public function setExternalReference(string $value): void
+    {
+        $this->order->external_reference = $value;
+    }
+
+    public function setNotificationUrl(string $value): void
+    {
+        $this->order->notification_url = $value;
+    }
+
+    public function setItems(array $value): void
+    {
+        $this->order->items = $value;
     }
 
     public function sendData(array $data, $collector_id = null)
     {
-        if ($collector_id === null) {
-            $collector_id = $this->getCollectorIdFromMp();
+        if ($data['external_reference']) {
+            $this->setExternalReference($data['external_reference']);
+        }
+        if ($data['notification_url']) {
+            $this->setNotificationUrl($data['notification_url']);
+        }
+        if ($data['items']) {
+            $this->setItems($data['items']);
         }
 
-        return $this->mp->post(
-            '/mpmobile/instore/qr/' . $collector_id . '/' . $this->pos->getPosData()->getExternalId(),
-            $data
-        );
+        return $this->order->save();
     }
 }

@@ -18,7 +18,7 @@
     "php": ">=7.1",
     "endroid/qr-code": "^3.2",
     "ext-gd": "*",
-    "mercadopago/sdk": "0.5.3"
+    "mercadopago/dx-php": "^1.2.7"
   },
   "require-dev": {
     "reyesoft/ci": "1.0.5",

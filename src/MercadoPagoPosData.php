@@ -26,11 +26,21 @@ class MercadoPagoPosData
         $this->external_id = $pos_external_id;
     }
 
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
     public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getFixedAmount(): bool
+    {
+        return $this->fixed_amount;
     }
 
     public function setFixedAmount(bool $fixed_amount): self
@@ -40,11 +50,21 @@ class MercadoPagoPosData
         return $this;
     }
 
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
     public function setCategory(?string $category): self
     {
         $this->category = $category;
 
         return $this;
+    }
+
+    public function getStoreId(): ?int
+    {
+        return $this->store_id;
     }
 
     public function setStoreId(?int $store_id): self

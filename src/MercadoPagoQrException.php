@@ -10,14 +10,6 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr;
 
-use MercadoPago\SDK;
-
-trait HasMpTrait
+class MercadoPagoQrException extends \Exception
 {
-    protected function getCollectorIdFromMp()
-    {
-        preg_match('/^.*\-([0-9]+)$/', SDK::getAccessToken(), $matches);
-
-        return $matches[1];
-    }
 }
