@@ -15,7 +15,7 @@
     }
   ],
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.2",
     "endroid/qr-code": "^3.2",
     "ext-gd": "*",
     "mercadopago/dx-php": "dev-fix/1.2.7 as 1.2.7"
