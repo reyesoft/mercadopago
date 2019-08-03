@@ -33,11 +33,6 @@ class MercadoPagoOrder
         $this->order = new InstoreOrder();
     }
 
-    public function setId(string $value): void
-    {
-        $this->order->id = $value;
-    }
-
     public function setExternalReference(string $value): void
     {
         $this->order->external_reference = $value;
