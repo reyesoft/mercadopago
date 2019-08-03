@@ -1,3 +1,8 @@
 includes:
 	- ../../vendor/phpstan/phpstan-strict-rules/rules.neon
 
+parameters:
+    ignoreErrors:
+        # Problem with MercadoPago Dx PHP
+        - '#Class MercadoPago\\POS referenced with incorrect#'
+        - '#Access to protected property MercadoPago\\#'
