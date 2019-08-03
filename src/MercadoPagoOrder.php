@@ -53,6 +53,11 @@ class MercadoPagoOrder
         $this->order->items = $value;
     }
 
+    public function getResponse()
+    {
+        return $this->order->getAttributes();
+    }
+
     public function sendData(array $data, $collector_id = null)
     {
         if ($data['external_reference']) {
@@ -65,6 +70,10 @@ class MercadoPagoOrder
             $this->setItems($data['items']);
         }
 
-        return $this->order->save();
+        $this->order->external_id = $this->pos->getPosData()->getExternalId();
+
+        $this->order->save();
+
+        return $this->getResponse();
     }
 }

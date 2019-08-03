@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7b02e4f41913f91bf698ba555394106",
+    "content-hash": "5d522c34c58dd789e2cdffc7ae74e042",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -906,16 +906,16 @@
         },
         {
             "name": "mercadopago/dx-php",
-            "version": "1.2.7",
+            "version": "dev-fix/1.2.7",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mercadopago/dx-php.git",
-                "reference": "bef56dff13a51e7c259b9612603be98feccb61be"
+                "url": "https://github.com/pablorsk/dx-php.git",
+                "reference": "b931de6b0ae6d35f717888018ae7478ff1ce1e2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/dx-php/zipball/bef56dff13a51e7c259b9612603be98feccb61be",
-                "reference": "bef56dff13a51e7c259b9612603be98feccb61be",
+                "url": "https://api.github.com/repos/pablorsk/dx-php/zipball/b931de6b0ae6d35f717888018ae7478ff1ce1e2c",
+                "reference": "b931de6b0ae6d35f717888018ae7478ff1ce1e2c",
                 "shasum": ""
             },
             "require": {
@@ -944,24 +944,26 @@
                     ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "imasson",
-                    "homepage": "https://github.com/imasson",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "homepage": "https://github.com/imasson"
                 },
                 {
                     "name": "joelibaceta",
-                    "homepage": "https://github.com/joelibaceta",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "homepage": "https://github.com/joelibaceta"
                 }
             ],
             "homepage": "https://github.com/mercadopago/dx-php",
-            "time": "2019-04-15T14:47:45+00:00"
+            "support": {
+                "source": "https://github.com/pablorsk/dx-php/tree/fix/1.2.7"
+            },
+            "time": "2019-08-03T03:59:57+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -5288,9 +5290,18 @@
             "time": "2018-12-25T11:19:39+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "1.2.7",
+            "alias_normalized": "1.2.7.0",
+            "version": "dev-fix/1.2.7",
+            "package": "mercadopago/dx-php"
+        }
+    ],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "mercadopago/dx-php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
