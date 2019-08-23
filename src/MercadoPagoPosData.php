@@ -86,6 +86,10 @@ class MercadoPagoPosData
         return $this;
     }
 
+    /**
+     * @deprecated since 2.0.0
+     * @codeCoverageIgnore
+     */
     public function getDataArray(): array
     {
         return [

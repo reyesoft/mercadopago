@@ -15,16 +15,22 @@
     }
   ],
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.2",
     "endroid/qr-code": "^3.2",
     "ext-gd": "*",
-    "mercadopago/dx-php": "^1.2.7"
+    "mercadopago/dx-php": "dev-fix/1.2.7#f40bd4a23f175d9e053903350f1812e2a8fd2261 as 1.2.7"
   },
   "require-dev": {
     "reyesoft/ci": "1.0.5",
     "phpunit/phpunit": "^7",
     "codedungeon/phpunit-result-printer": "0.19.10"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/pablorsk/dx-php"
+    }
+  ],
   "autoload": {
     "classmap": [
       "src/"

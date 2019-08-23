@@ -26,7 +26,7 @@ class MercadoPagoPos
     /** @var MercadoPagoPosData */
     protected $data;
 
-    /** @var POS */
+    /** @var Pos */
     protected $pos;
 
     public function __construct(string $pos_external_id = '')
@@ -40,11 +40,6 @@ class MercadoPagoPos
     {
         return $this->data;
     }
-
-//    public function getPos(): POS
-//    {
-//        return $this->pos;
-//    }
 
     public function createOrFail(): bool
     {

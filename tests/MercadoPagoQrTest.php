@@ -121,6 +121,6 @@ class MercadoPagoQrTest extends TestCase
         $order = $pos->createAnOrder();
         $result = $order->sendData($order_data);
 
-        $this->assertSame($result['response']['total_amount'], 450);
+        $this->assertSame($order->getResponse()['total_amount'], 450);
     }
 }
