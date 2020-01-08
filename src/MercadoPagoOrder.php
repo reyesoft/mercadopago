@@ -19,8 +19,6 @@ class MercadoPagoOrder
 {
     use HasMpTrait;
 
-    protected $data;
-
     /** @var MercadoPagoPos */
     protected $pos;
 
@@ -43,25 +41,39 @@ class MercadoPagoOrder
         $this->order->notification_url = $value;
     }
 
+    /**
+     * @param array<mixed> $value
+     */
     public function setItems(array $value): void
     {
         $this->order->items = $value;
     }
 
-    public function getResponse()
+    /**
+     * @return array<mixed>
+     */
+    public function getResponse(): array
     {
         return $this->order->getAttributes();
     }
 
-    public function sendData(array $data, $collector_id = null)
+    /**
+     * @param array<string,mixed> $data
+     * @param null $collector_id
+     *
+     * @throws \Exception
+     *
+     * @return array<mixed>
+     */
+    public function sendData(array $data, $collector_id = null): array
     {
-        if ($data['external_reference']) {
+        if (isset($data['external_reference'])) {
             $this->setExternalReference($data['external_reference']);
         }
-        if ($data['notification_url']) {
+        if (isset($data['notification_url'])) {
             $this->setNotificationUrl($data['notification_url']);
         }
-        if ($data['items']) {
+        if (isset($data['items'])) {
             $this->setItems($data['items']);
         }
 

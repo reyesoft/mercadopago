@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class MercadoPagoQrTest extends TestCase
 {
-    public static $location_mp = null;
+    // public static $location_mp = null;
 
     public function initializeMercadoPagoSdk(): void
     {
@@ -78,9 +78,9 @@ final class MercadoPagoQrTest extends TestCase
         $pos->getPosData()
             ->setName('My MercadoPago POS of testing');
 
-        $pos->checkOrCreate();
+        $result = $pos->checkOrCreate();
 
-        static::assertTrue(true);
+        static::assertTrue($result);
     }
 
     /**
@@ -94,7 +94,10 @@ final class MercadoPagoQrTest extends TestCase
         $filename = __DIR__ . '/image/mercadopago-qr-code.png';
         $pos->getQrCode()->writeFile($filename);
 
-        $image = imagecreatefromstring(file_get_contents($filename));
+        $file_content = file_get_contents($filename);
+        static::assertNotFalse($file_content);
+
+        $image = imagecreatefromstring($file_content);
 
         static::assertInternalType('resource', $image);
     }

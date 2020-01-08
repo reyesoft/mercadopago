@@ -14,10 +14,10 @@ use MercadoPago\SDK;
 
 trait HasMpTrait
 {
-    protected function getCollectorIdFromMp()
+    protected function getCollectorIdFromMp(): string
     {
         preg_match('/^.*\-([0-9]+)$/', SDK::getAccessToken(), $matches);
 
-        return $matches[1];
+        return (string) $matches[1];
     }
 }

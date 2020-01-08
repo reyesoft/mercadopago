@@ -15,13 +15,28 @@ namespace MercadoPagoQr;
  */
 class MercadoPagoPosData
 {
+    /**
+     * @var string
+     */
     private $name = '';
+    /**
+     * @var string
+     */
     private $external_id;
+    /**
+     * @var bool
+     */
     private $fixed_amount = true;
+    /**
+     * @var string|null
+     */
     private $category;   // 621102 gastronomia argentina
+    /**
+     * @var int|null
+     */
     private $store_id;
 
-    public function __construct($pos_external_id = '')
+    public function __construct(string $pos_external_id = '')
     {
         $this->external_id = $pos_external_id;
     }
@@ -89,6 +104,8 @@ class MercadoPagoPosData
     /**
      * @deprecated since 2.0.0
      * @codeCoverageIgnore
+     *
+     * @return array<string,bool|string|int|null>
      */
     public function getDataArray(): array
     {

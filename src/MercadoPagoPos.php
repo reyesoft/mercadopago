@@ -81,7 +81,7 @@ class MercadoPagoPos
         // @codeCoverageIgnoreEnd
     }
 
-    public function getQrCode($collector_id = null): QrCode
+    public function getQrCode(string $collector_id = null): QrCode
     {
         if ($collector_id === null) {
             $collector_id = $this->getCollectorIdFromMp();
@@ -94,7 +94,7 @@ class MercadoPagoPos
         return $this->qr_code;
     }
 
-    public function createAnOrder()
+    public function createAnOrder(): MercadoPagoOrder
     {
         return new MercadoPagoOrder($this);
     }
