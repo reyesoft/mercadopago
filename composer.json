@@ -21,7 +21,7 @@
     "mercadopago/dx-php": "dev-fix/1.2.7#f40bd4a23f175d9e053903350f1812e2a8fd2261 as 1.2.7"
   },
   "require-dev": {
-    "reyesoft/ci": "1.0.5",
+    "reyesoft/ci": "1.2.0",
     "phpunit/phpunit": "^7",
     "codedungeon/phpunit-result-printer": "0.19.10"
   },

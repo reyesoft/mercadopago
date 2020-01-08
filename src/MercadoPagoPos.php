@@ -73,10 +73,10 @@ class MercadoPagoPos
             if (strpos($e->getMessage(), 'point_of_sale_exists') > 0) {
                 return true;
             } else {
-                throw new $e();
+                throw $e;
             }
         } catch (\Exception $e) {
-            throw new $e();
+            throw $e;
         }
         // @codeCoverageIgnoreEnd
     }
