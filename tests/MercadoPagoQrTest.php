@@ -67,6 +67,7 @@ final class MercadoPagoQrTest extends TestCase
 
         $this->expectExceptionMessage('Point of sale with corresponding user and id exists');
         $pos->createOrFail();
+        echo 'zzzz';
     }
 
     public function testCreateTestPos(): void
