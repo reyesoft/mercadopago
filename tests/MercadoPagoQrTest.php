@@ -16,7 +16,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversNothing
+ * @covers \MercadoPagoQr\MercadoPagoOrder
+ * @covers \MercadoPagoQr\MercadoPagoPos
  */
 final class MercadoPagoQrTest extends TestCase
 {
@@ -67,7 +68,6 @@ final class MercadoPagoQrTest extends TestCase
 
         $this->expectExceptionMessage('Point of sale with corresponding user and id exists');
         $pos->createOrFail();
-        echo 'zzzz';
     }
 
     public function testCreateTestPos(): void
