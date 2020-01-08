@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 1997-2018 Reyesoft <info@reyesoft.com>.
+ * Copyright (C) 1997-2020 Reyesoft <info@reyesoft.com>.
  *
  * This file is part of CryptoQr. CryptoQr can not be copied and/or
  * distributed without the express permission of Reyesoft
@@ -56,10 +56,10 @@ class MercadoPagoPos
         }
 
         throw new MercadoPagoQrException(
-                        $pos->Error()->message
+            $pos->Error()->message
                         . ' (' . $pos->Error()->error . ')'
                         . ' (' . $pos->Error()->status . ')'
-                    );
+        );
     }
 
     public function checkOrCreate(): bool

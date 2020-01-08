@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 1997-2018 Reyesoft <info@reyesoft.com>.
+ * Copyright (C) 1997-2020 Reyesoft <info@reyesoft.com>.
  *
  * This file is part of CryptoQr. CryptoQr can not be copied and/or
  * distributed without the express permission of Reyesoft
@@ -12,22 +12,25 @@ namespace MercadoPagoQr\Tests;
 
 use MercadoPago\SDK;
 use MercadoPagoQr\MercadoPagoPos;
-use MercadoPagoQr\MercadoPagoQr;
 use PHPUnit\Framework\TestCase;
 
-class MercadoPagoQrTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class MercadoPagoQrTest extends TestCase
 {
     public static $location_mp = null;
 
     public function initializeMercadoPagoSdk(): void
     {
-//        $GLOBALS['LIB_LOCATION'] = self::$location_mp;  // fix problem on library
-//        if (self::$mp === null) {
-//            // self::$mp = new \MP('3282634683852359', $client_secret);
-//            // self::$mp = new \MP('your_access_token');
-//            self::$location_mp = $GLOBALS['LIB_LOCATION'];
-//
-//        }
+        //        $GLOBALS['LIB_LOCATION'] = self::$location_mp;  // fix problem on library
+        //        if (self::$mp === null) {
+        //            // self::$mp = new \MP('3282634683852359', $client_secret);
+        //            // self::$mp = new \MP('your_access_token');
+        //            self::$location_mp = $GLOBALS['LIB_LOCATION'];
+        //
+        //        }
         SDK::setClientId('3282634683852359');
         SDK::setClientSecret('BAB5nUMycs4Nhpy5itEoGHMNrF2fklUR');
     }
@@ -47,7 +50,7 @@ class MercadoPagoQrTest extends TestCase
 
         $created = $pos->createOrFail();
 
-        $this->assertTrue($created);
+        static::assertTrue($created);
 
         return $pos->getPosData()->getExternalId();
     }
@@ -77,7 +80,7 @@ class MercadoPagoQrTest extends TestCase
 
         $pos->checkOrCreate();
 
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     /**
@@ -93,7 +96,7 @@ class MercadoPagoQrTest extends TestCase
 
         $image = imagecreatefromstring(file_get_contents($filename));
 
-        $this->assertInternalType('resource', $image);
+        static::assertInternalType('resource', $image);
     }
 
     /**
@@ -121,6 +124,6 @@ class MercadoPagoQrTest extends TestCase
         $order = $pos->createAnOrder();
         $result = $order->sendData($order_data);
 
-        $this->assertSame($order->getResponse()['total_amount'], 450);
+        static::assertSame($order->getResponse()['total_amount'], 450);
     }
 }
