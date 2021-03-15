@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2021-03-15
+
+### Changed
+- dx-php updated with psr-4 fixes
+
 ## [1.0.1] - 2020-01-08
 
 ### Added
