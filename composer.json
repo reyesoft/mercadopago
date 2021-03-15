@@ -18,7 +18,7 @@
     "php": ">=7.2",
     "endroid/qr-code": "^3.2",
     "ext-gd": "*",
-    "pablorsk/dx-php": "1.7.2"
+    "pablorsk/dx-php": "1.7.3"
   },
   "require-dev": {
     "reyesoft/ci": "1.2.0",
