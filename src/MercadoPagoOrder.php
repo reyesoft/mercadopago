@@ -10,7 +10,8 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr;
 
-use MercadoPago\InstoreOrder;
+
+use MercadoPago\Entities\InstoreOrder;
 
 /**
  * @see https://www.mercadopago.com.ar/developers/en/guides/instore-payments/qr-payments/qr-pos/ "Order object"

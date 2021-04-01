@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace MercadoPagoQr;
 
 use Endroid\QrCode\QrCode;
-use MercadoPago\Pos as Pos;
+use MercadoPago\Entities\Pos as Pos;
 
 /**
  * @see https://www.mercadopago.com.ar/developers/en/guides/instore-payments/qr-payments/qr-pos/ "Create QR"

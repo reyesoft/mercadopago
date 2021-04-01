@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace MercadoPagoQr\Tests;
+namespace Tests;
 
 use MercadoPago\SDK;
 use MercadoPagoQr\MercadoPagoPos;
