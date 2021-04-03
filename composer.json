@@ -2,7 +2,7 @@
   "name": "reyesoft/mercadopago",
   "description": "This library helps to make payments through MercadoPago, even with QR",
   "type": "library",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "keywords": ["qrcode", "payments", "mercadopago api", "reyesoft"],
   "homepage": "https://github.com/reyesoft/mercadopago",
   "license": "MIT",
