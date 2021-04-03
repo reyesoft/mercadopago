@@ -2,7 +2,7 @@
   "name": "reyesoft/mercadopago",
   "description": "This library helps to make payments through MercadoPago, even with QR",
   "type": "library",
-  "version": "1.1.0",
+  "version": "1.1.22,
   "keywords": ["qrcode", "payments", "mercadopago api", "reyesoft"],
   "homepage": "https://github.com/reyesoft/mercadopago",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "php": ">=7.2",
     "endroid/qr-code": "^3.2",
     "ext-gd": "*",
-    "pablorsk/dx-php": "2.2.3"
+    "pablorsk/dx-php": "2.2.5"
   },
   "require-dev": {
     "reyesoft/ci": "1.2.0",
