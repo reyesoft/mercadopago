@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.3] - 2022-10-18
+
+### Changed
+- fix/doctrine-inflector compatibility with PHP8 and Laravel 9.
+- pablorsk/dx-php bump.
+
 ## [1.1.1] - 2021-03-15
 
 ### Changed
