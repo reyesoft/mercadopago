@@ -19,12 +19,7 @@
     "php": ">=7.2",
     "endroid/qr-code": "^3.2",
     "ext-gd": "*",
-    "pablorsk/dx-php": "dev-fix/doctrine-inflector as 2.2.5"
-  },
-  "require-dev": {
-    "reyesoft/ci": "1.2.0",
-    "phpunit/phpunit": "^7",
-    "codedungeon/phpunit-result-printer": "0.19.10"
+    "pablorsk/dx-php": "2.2.7"
   },
   "autoload": {
     "classmap": [
