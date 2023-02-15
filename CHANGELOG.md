@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.4] - 2023-02-15
+
+### Changed
+- pablorsk/dx-php bump.
+- README with docker instructions.
+
 ## [1.1.3] - 2022-10-18
 
 ### Changed
