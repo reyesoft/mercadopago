@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use Endroid\QrCode\Writer\PngWriter;
 use MercadoPago\SDK;
 use MercadoPagoQr\MercadoPagoPos;
 use PHPUnit\Framework\TestCase;
@@ -93,14 +94,19 @@ final class MercadoPagoQrTest extends TestCase
 
         $pos = new MercadoPagoPos('MyTestPos');
         $filename = __DIR__ . '/image/mercadopago-qr-code.png';
-        $pos->getQrCode()->writeFile($filename);
+
+        $qrCode = $pos->getQrCode();
+        $writer = new PngWriter();
+
+        $result = $writer->write($qrCode);
+        $result->saveToFile($filename);
 
         $file_content = file_get_contents($filename);
         static::assertNotFalse($file_content);
 
         $image = imagecreatefromstring($file_content);
 
-        static::assertInternalType('resource', $image);
+        static::assertIsResource($image);
     }
 
     /**

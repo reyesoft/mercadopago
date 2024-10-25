@@ -31,7 +31,7 @@ class MercadoPagoPos
 
     public function __construct(string $pos_external_id = '')
     {
-        $this->qr_code = new QrCode();
+        $this->qr_code = new QrCode($pos_external_id);
         $this->data = new MercadoPagoPosData($pos_external_id);
         $this->pos = new Pos();
     }
@@ -87,9 +87,7 @@ class MercadoPagoPos
             $collector_id = $this->getCollectorIdFromMp();
         }
 
-        $this->qr_code->setText(
-            'https://mercadopago.com/s/qr/' . $collector_id . '/' . $this->data->getExternalId()
-        );
+        $this->qr_code = new QrCode('https://mercadopago.com/s/qr/' . $collector_id . '/' . $this->data->getExternalId());
 
         return $this->qr_code;
     }
