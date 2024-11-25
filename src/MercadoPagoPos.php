@@ -48,7 +48,7 @@ class MercadoPagoPos
         ]));
     }
 
-    public function getQrCode(?string $collector_id = null): string
+    public function getQrContent(?string $collector_id = null): string
     {
         if ($collector_id === null) {
             $collector_id = $this->getCollectorIdFromMp();

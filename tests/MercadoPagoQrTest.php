@@ -94,7 +94,7 @@ final class MercadoPagoQrTest extends TestCase
 
         $pos = new MercadoPagoPos('MyTestPos');
         $filename = __DIR__ . '/image/mercadopago-qr-code.png';
-        $pos->getQrCode()->writeFile($filename);
+        $pos->getQrContent()->writeFile($filename);
 
         $file_content = file_get_contents($filename);
         $this->assertNotFalse($file_content);
