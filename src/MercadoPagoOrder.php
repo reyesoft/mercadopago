@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr;
 
+use MercadoPago\Net\MPResponse;
 use MercadoPagoQr\Clients\InstoreOrderV2;
 
 class MercadoPagoOrder
@@ -26,7 +27,7 @@ class MercadoPagoOrder
         ?array $payeer= null,
         ?array $items= null,
         ?string $preference_id = null,
-    ): bool {
+    ): MPResponse {
         return (new InstoreOrderV2())->create(
             $user_id,
             $external_store_id,
