@@ -15,6 +15,7 @@ use MercadoPago\Client\MercadoPagoClient;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Net\HttpMethod;
 use MercadoPago\Net\MPHttpClient;
+use MercadoPago\Net\MPResponse;
 use MercadoPago\Serialization\Serializer;
 use MercadoPagoQr\Resources\Pos;
 
@@ -31,16 +32,9 @@ final class InstoreOrderV2 extends MercadoPagoClient
     /**
      * @see https://www.mercadopago.com.ar/developers/en/reference/instore_orders_v2/_instore_qr_seller_collectors_user_id_stores_external_store_id_pos_external_pos_id_orders/put
      */
-    public function create(int $user_id, string $external_store_id, string $external_pos_id, array $payload, ?RequestOptions $request_options = null): bool
+    public function create(int $user_id, string $external_store_id, string $external_pos_id, array $payload, ?RequestOptions $request_options = null): MPResponse
     {
         // no response
-        $response = parent::send(sprintf(self::URL_CREATE, $user_id, $external_store_id, $external_pos_id), HttpMethod::PUT, json_encode($payload), null, $request_options);
-
-        return $response->getStatusCode() === 200;
-        /*
-        $result = Serializer::deserializeFromJson(PosX::class, $response->getContent());
-        $result->setResponse($response);
-        return $result;
-        */
+        return parent::send(sprintf(self::URL_CREATE, $user_id, $external_store_id, $external_pos_id), HttpMethod::PUT, json_encode($payload), null, $request_options);
     }
 }
