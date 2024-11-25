@@ -21,11 +21,11 @@ class MercadoPagoOrder
         int $user_id,
         string $external_store_id,
         string $external_pos_id,
-        ?string $external_reference,
-        ?string $notification_url,
-        ?array $payeer,
-        ?array $items,
-        ?string $preference_id,
+        ?string $external_reference= null,
+        ?string $notification_url= null,
+        ?array $payeer= null,
+        ?array $items= null,
+        ?string $preference_id = null,
     ): bool {
         return (new InstoreOrderV2())->create(
             $user_id,
