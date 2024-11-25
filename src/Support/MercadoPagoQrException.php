@@ -8,8 +8,8 @@
 
 declare(strict_types=1);
 
-namespace MercadoPagoQr;
+namespace MercadoPagoQr\Support;
 
-class MercadoPagoQrException extends \Exception
-{
-}
+use MercadoPago\Exceptions\MPApiException;
+
+class MercadoPagoQrException extends MPApiException {}

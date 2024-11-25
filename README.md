@@ -44,13 +44,8 @@ $order = $pos->createAnOrder();
 $result = $order->sendData($order_data);
 ```
 
-This generates a qr code like that:
+### Images
 
-![mercadopago-qr](https://github.com/reyesoft/mercadopago/blob/master/tests/image/mercadopago-qr-code.png?raw=true "Mercadopago QR generated with MercadoPagoQr library")
-
-## Support us
-Reyesoft is a software industry based in San Rafael, Argentina. You'll find an overview of all our projects on our [website](http://reyesoft.com/).
-
-## PHP 7.4
-
-> docker run -it --rm --name php74 -e PHP_EXTENSIONS="gd" -v "$PWD":/usr/src/app thecodingmachine/php:7.4-v4-cli bash
+```bash
+docker run -it --rm --name php82 -e PHP_EXTENSIONS="" -v "$PWD":/usr/src/app pablorsk/laravel-json-api:8.2 bash
+```

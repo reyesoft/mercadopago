@@ -10,78 +10,34 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr;
 
+use MercadoPagoQr\Clients\InstoreOrderV2;
 
-use MercadoPago\Entities\InstoreOrder;
-
-/**
- * @see https://www.mercadopago.com.ar/developers/en/guides/instore-payments/qr-payments/qr-pos/ "Order object"
- */
 class MercadoPagoOrder
 {
-    use HasMpTrait;
-
-    /** @var MercadoPagoPos */
-    protected $pos;
-
-    /** @var InstoreOrder */
-    protected $order;
-
-    public function __construct(MercadoPagoPos $pos)
-    {
-        $this->pos = $pos;
-        $this->order = new InstoreOrder();
-    }
-
-    public function setExternalReference(string $value): void
-    {
-        $this->order->external_reference = $value;
-    }
-
-    public function setNotificationUrl(string $value): void
-    {
-        $this->order->notification_url = $value;
-    }
-
     /**
-     * @param array<mixed> $value
+     * @see https://www.mercadopago.com.ar/developers/en/reference/instore_orders_v2/_instore_qr_seller_collectors_user_id_stores_external_store_id_pos_external_pos_id_orders/put
      */
-    public function setItems(array $value): void
-    {
-        $this->order->items = $value;
-    }
-
-    /**
-     * @return array<mixed>
-     */
-    public function getResponse(): array
-    {
-        return $this->order->getAttributes();
-    }
-
-    /**
-     * @param array<string,mixed> $data
-     * @param null $collector_id
-     *
-     * @throws \Exception
-     *
-     * @return array<mixed>
-     */
-    public function sendData(array $data, $collector_id = null): array
-    {
-        if (isset($data['external_reference'])) {
-            $this->setExternalReference($data['external_reference']);
-        }
-        if (isset($data['notification_url'])) {
-            $this->setNotificationUrl($data['notification_url']);
-        }
-        if (isset($data['items'])) {
-            $this->setItems($data['items']);
-        }
-
-        $this->order->external_id = $this->pos->getPosData()->getExternalId();
-
-        $this->order->save();
-
-        return $this->getResponse();
+    public static function createOrFail(
+        int $user_id,
+        string $external_store_id,
+        string $external_pos_id,
+        ?string $external_reference= null,
+        ?string $notification_url= null,
+        ?array $payeer= null,
+        ?array $items= null,
+        ?string $preference_id = null,
+    ): bool {
+        return (new InstoreOrderV2())->create(
+            $user_id,
+            $external_store_id,
+            $external_pos_id,
+            array_filter([
+                'external_reference' => $external_reference,
+                'notification_url' => $notification_url,
+                'payeer' => $payeer,
+                'items' => $items,
+                'preference_id' => $preference_id,
+            ])
+        );
     }
 }
