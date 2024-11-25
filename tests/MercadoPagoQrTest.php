@@ -16,8 +16,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @covers \MercadoPagoQr\MercadoPagoOrder
+ *
  * @covers \MercadoPagoQr\MercadoPagoPos
+ * @covers \MercadoPagoQr\MercadoPagoOrder
  */
 final class MercadoPagoQrTest extends TestCase
 {
@@ -51,7 +52,7 @@ final class MercadoPagoQrTest extends TestCase
 
         $created = $pos->createOrFail();
 
-        static::assertTrue($created);
+        $this->assertTrue($created);
 
         return $pos->getPosData()->getExternalId();
     }
@@ -81,7 +82,7 @@ final class MercadoPagoQrTest extends TestCase
 
         $result = $pos->checkOrCreate();
 
-        static::assertTrue($result);
+        $this->assertTrue($result);
     }
 
     /**
@@ -96,11 +97,11 @@ final class MercadoPagoQrTest extends TestCase
         $pos->getQrCode()->writeFile($filename);
 
         $file_content = file_get_contents($filename);
-        static::assertNotFalse($file_content);
+        $this->assertNotFalse($file_content);
 
         $image = imagecreatefromstring($file_content);
 
-        static::assertInternalType('resource', $image);
+        $this->assertIsResource($image);
     }
 
     /**
@@ -128,6 +129,6 @@ final class MercadoPagoQrTest extends TestCase
         $order = $pos->createAnOrder();
         $result = $order->sendData($order_data);
 
-        static::assertSame($order->getResponse()['total_amount'], 450);
+        $this->assertSame($order->getResponse()['total_amount'], 450);
     }
 }
