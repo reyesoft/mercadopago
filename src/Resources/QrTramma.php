@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr\Resources;
 
-class QrTramma
+use MercadoPago\Net\MPResource;
+
+class QrTramma extends MPResource
 {
     public ?string $qr_data;
     public ?string $in_store_order_id;
