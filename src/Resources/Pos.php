@@ -11,9 +11,10 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr\Resources;
 
+use MercadoPago\Net\MPResource;
 use MercadoPago\Serialization\Mapper;
 
-class Pos
+class Pos extends MPResource
 {
     use Mapper;
 

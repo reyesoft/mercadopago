@@ -30,14 +30,7 @@ final class PosClient extends MercadoPagoClient
     }
 
     /**
-     * Method responsible for creating card token.
-     *
-     * @param array $request card token data
-     *
      * @throws MPApiException if the request fails
-     * @throws \Exception if the request fails
-     *
-     * @return Pos card token created
      */
     public function create(array $request, ?RequestOptions $request_options = null): Pos
     {

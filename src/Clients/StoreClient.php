@@ -37,6 +37,7 @@ final class StoreClient extends MercadoPagoClient
         $result = Serializer::deserializeFromJson(Store::class, $response->getContent());
         $result->setResponse($response);
 
+        // @phpstan-ignore-next-line
         return $result;
     }
 }

@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr\Resources;
 
-class Store
+use MercadoPago\Net\MPResource;
+
+class Store extends MPResource
 {
     public ?int $id;
     public ?string $name;
