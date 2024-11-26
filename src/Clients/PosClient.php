@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 1997-2020 Reyesoft <info@reyesoft.com>.
  *
@@ -32,7 +33,6 @@ final class PosClient extends MercadoPagoClient
      * Method responsible for creating card token.
      *
      * @param array $request card token data
-     * @param RequestOptions request options to be sent
      *
      * @throws MPApiException if the request fails
      * @throws \Exception if the request fails

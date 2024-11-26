@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 1997-2020 Reyesoft <info@reyesoft.com>.
  *
@@ -30,7 +31,7 @@ class Pos
     public ?string $external_store_id;
     public ?string $external_id;
     private array $map = [
-        'qr' => 'MercadoPagoQr\\Resources\\Qr',
+        'qr' => 'MercadoPagoQr\Resources\Qr',
     ];
 
     /**

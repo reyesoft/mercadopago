@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 1997-2020 Reyesoft <info@reyesoft.com>.
  *
@@ -18,6 +19,6 @@ trait HasMpTrait
     {
         preg_match('/^.*\-([0-9]+)$/', MercadoPagoConfig::getAccessToken(), $matches);
 
-        return (string) $matches[1];
+        return $matches[1] ?? '';
     }
 }

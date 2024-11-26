@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 1997-2020 Reyesoft <info@reyesoft.com>.
  *
@@ -15,12 +16,10 @@ use MercadoPago\Client\MercadoPagoClient;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Net\HttpMethod;
 use MercadoPago\Net\MPHttpClient;
-use MercadoPago\Serialization\Serializer;
 use MercadoPagoQr\Resources\Pos;
 
 final class InstoreOrderV2 extends MercadoPagoClient
 {
-    private const URL = '/pos';
     private const URL_CREATE = '/instore/qr/seller/collectors/%s/stores/%s/pos/%s/orders';
 
     public function __construct(?MPHttpClient $MPHttpClient = null)
@@ -30,6 +29,8 @@ final class InstoreOrderV2 extends MercadoPagoClient
 
     /**
      * @see https://www.mercadopago.com.ar/developers/en/reference/instore_orders_v2/_instore_qr_seller_collectors_user_id_stores_external_store_id_pos_external_pos_id_orders/put
+     *
+     * @throws \TypeError this entrypoint return empty response, and is not supported by MercadoPago DX PHP
      */
     public function create(int $user_id, string $external_store_id, string $external_pos_id, array $payload, ?RequestOptions $request_options = null): bool
     {
@@ -37,11 +38,5 @@ final class InstoreOrderV2 extends MercadoPagoClient
         $response = parent::send(sprintf(self::URL_CREATE, $user_id, $external_store_id, $external_pos_id), HttpMethod::PUT, json_encode($payload), null, $request_options);
 
         return $response->getStatusCode() > 200 && $response->getStatusCode() < 300;
-        /*
-        $result = Serializer::deserializeFromJson(PosX::class, $response->getContent());
-        $result->setResponse($response);
-        return $result;
-        */
     }
-
 }

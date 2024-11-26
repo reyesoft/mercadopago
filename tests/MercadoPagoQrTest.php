@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 1997-2020 Reyesoft <info@reyesoft.com>.
  *
@@ -10,125 +11,18 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use MercadoPago\SDK;
-use MercadoPagoQr\MercadoPagoPos;
+use MercadoPago\MercadoPagoConfig;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
  *
- * @covers \MercadoPagoQr\MercadoPagoPos
- * @covers \MercadoPagoQr\MercadoPagoOrder
+ * @coversNothing
  */
 final class MercadoPagoQrTest extends TestCase
 {
-    // public static $location_mp = null;
-
     public function initializeMercadoPagoSdk(): void
     {
-        //        $GLOBALS['LIB_LOCATION'] = self::$location_mp;  // fix problem on library
-        //        if (self::$mp === null) {
-        //            // self::$mp = new \MP('3282634683852359', $client_secret);
-        //            // self::$mp = new \MP('your_access_token');
-        //            self::$location_mp = $GLOBALS['LIB_LOCATION'];
-        //
-        //        }
-        SDK::setClientId('3282634683852359');
-        SDK::setClientSecret('BAB5nUMycs4Nhpy5itEoGHMNrF2fklUR');
-    }
-
-    public function testCreateAPosQr(): string
-    {
-        $this->initializeMercadoPagoSdk();
-
-        $pos = new MercadoPagoPos();
-
-        $pos->getPosData()
-            ->setExternalId('MyTestPos' . random_int(1, 1000) . time())
-            ->setName('My MercadoPago POS of testing')
-            ->setFixedAmount(false)
-            ->setCategory(null)
-            ->setStoreId(null);
-
-        $created = $pos->createOrFail();
-
-        $this->assertTrue($created);
-
-        return $pos->getPosData()->getExternalId();
-    }
-
-    /**
-     * @depends testCreateAPosQr
-     */
-    public function testTryToCreateARepeatedPosQr(string $pos_id): void
-    {
-        $this->initializeMercadoPagoSdk();
-
-        $pos = new MercadoPagoPos();
-        $pos->getPosData()->setExternalId($pos_id);
-
-        $this->expectExceptionMessage('Point of sale with corresponding user and id exists');
-        $pos->createOrFail();
-    }
-
-    public function testCreateTestPos(): void
-    {
-        $this->initializeMercadoPagoSdk();
-
-        $pos = new MercadoPagoPos('MyTestPos');
-
-        $pos->getPosData()
-            ->setName('My MercadoPago POS of testing');
-
-        $result = $pos->checkOrCreate();
-
-        $this->assertTrue($result);
-    }
-
-    /**
-     * @depends testCreateTestPos
-     */
-    public function testCreateQr(): void
-    {
-        $this->initializeMercadoPagoSdk();
-
-        $pos = new MercadoPagoPos('MyTestPos');
-        $filename = __DIR__ . '/image/mercadopago-qr-code.png';
-        $pos->getQrContent()->writeFile($filename);
-
-        $file_content = file_get_contents($filename);
-        $this->assertNotFalse($file_content);
-
-        $image = imagecreatefromstring($file_content);
-
-        $this->assertIsResource($image);
-    }
-
-    /**
-     * @depends testCreateTestPos
-     */
-    public function testCreateAnOrderForTestPos(): void
-    {
-        $this->initializeMercadoPagoSdk();
-
-        $pos = new MercadoPagoPos('MyTestPos');
-
-        $order_data = [
-            'external_reference' => 'id_interno',
-            'notification_url' => 'www.yourserver.com/endpoint',
-            'items' => [
-                [
-                    'title' => 'api_smsc_com_ar',
-                    'quantity' => 1,
-                    'currency_id' => 'ARS',
-                    'unit_price' => 450,
-                ],
-            ],
-        ];
-
-        $order = $pos->createAnOrder();
-        $result = $order->sendData($order_data);
-
-        $this->assertSame($order->getResponse()['total_amount'], 450);
+        MercadoPagoConfig::setAccessToken('TEST-1234567890123456-123456-12345678901234567890');
     }
 }

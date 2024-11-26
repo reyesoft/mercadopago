@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 1997-2020 Reyesoft <info@reyesoft.com>.
  *
@@ -10,6 +11,7 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr;
 
+use MercadoPago\Exceptions\MPApiException;
 use MercadoPagoQr\Clients\PosClient;
 use MercadoPagoQr\Resources\Pos;
 use MercadoPagoQr\Support\HasMpTrait;
@@ -21,14 +23,12 @@ class MercadoPagoPos
 {
     use HasMpTrait;
 
-    public function __construct(private readonly string $pos_external_id)
-    {
-    }
+    public function __construct(private readonly string $pos_external_id) {}
 
     /**
-     * @return Pos
-     * @throws \MercadoPago\Exceptions\MPApiException
-     * @link https://www.mercadopago.com.ar/developers/en/reference/pos/_pos/post
+     * @throws MPApiException
+     *
+     * @see https://www.mercadopago.com.ar/developers/en/reference/pos/_pos/post
      */
     public static function createOrFail(
         string $name,
@@ -36,14 +36,13 @@ class MercadoPagoPos
         bool $fixed_amount = true,
         ?string $category = null, // 621102 gastronomia argentina
         ?int $store_id = null
-    ): Pos
-    {
+    ): Pos {
         // https://www.mercadopago.com.ar/developers/en/reference/pos/_pos/post
         return (new PosClient())->create(array_filter([
             'name' => $name,
             'external_id' => $external_id,
             'store_id' => $store_id,
-            'fixed_amount' =>$fixed_amount,
+            'fixed_amount' => $fixed_amount,
             'category' => $category,
         ]));
     }
