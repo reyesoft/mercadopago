@@ -20,7 +20,7 @@ use MercadoPago\Serialization\Serializer;
 use MercadoPagoQr\Resources\Pos;
 use MercadoPagoQr\Resources\QrTramma;
 
-final class InstoreQrTramma extends MercadoPagoClient
+final class QrTrammaClient extends MercadoPagoClient
 {
     private const URL_CREATE = '/instore/orders/qr/seller/collectors/%s/pos/%s/qrs';
 
