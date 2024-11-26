@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 1997-2020 Reyesoft <info@reyesoft.com>.
  *
@@ -8,8 +9,10 @@
 
 declare(strict_types=1);
 
-namespace MercadoPagoQr;
+namespace MercadoPagoQr\Resources;
 
-class MercadoPagoQrException extends \Exception
+class QrTramma
 {
+    public ?string $qr_data;
+    public ?string $in_store_order_id;
 }

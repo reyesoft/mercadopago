@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 1997-2020 Reyesoft <info@reyesoft.com>.
  *
@@ -8,16 +9,16 @@
 
 declare(strict_types=1);
 
-namespace MercadoPagoQr;
+namespace MercadoPagoQr\Support;
 
-use MercadoPago\SDK;
+use MercadoPago\MercadoPagoConfig;
 
 trait HasMpTrait
 {
     protected function getCollectorIdFromMp(): string
     {
-        preg_match('/^.*\-([0-9]+)$/', SDK::getAccessToken(), $matches);
+        preg_match('/^.*\-([0-9]+)$/', MercadoPagoConfig::getAccessToken(), $matches);
 
-        return (string) $matches[1];
+        return $matches[1] ?? '';
     }
 }

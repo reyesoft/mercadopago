@@ -2,7 +2,7 @@
   "name": "reyesoft/mercadopago",
   "description": "This library helps to make payments through MercadoPago, even with QR",
   "type": "library",
-  "version": "1.1.4",
+  "version": "3.0.0",
   "keywords": ["qrcode", "payments", "mercadopago api", "reyesoft"],
   "homepage": "https://github.com/reyesoft/mercadopago",
   "license": "MIT",
@@ -16,15 +16,12 @@
     }
   ],
   "require": {
-    "php": ">=7.2",
-    "endroid/qr-code": "^3.2",
-    "ext-gd": "*",
-    "pablorsk/dx-php": "2.2.8"
+    "php": ">=8.2",
+    "mercadopago/dx-php": "3.0.8"
   },
   "require-dev": {
-    "reyesoft/ci": "1.2.0",
-    "phpunit/phpunit": "^7",
-    "codedungeon/phpunit-result-printer": "0.19.10"
+    "reyesoft/ci": "^2.0",
+    "phpunit/phpunit": "^10.2"
   },
   "autoload": {
     "classmap": [
@@ -40,6 +37,7 @@
     }
   },
   "scripts": {
+    "autofix": "sh autofix.sh",
     "ci": "bash vendor/reyesoft/ci/parallel.bash -s \"composer ci-double-spaces\" \"composer ci-php-cs-fixer\" \"composer phpstan\"",
     "ci-double-spaces": [
       "sh vendor/reyesoft/ci/tools/find-double-spaces.sh src",
