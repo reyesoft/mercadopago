@@ -38,6 +38,7 @@ final class QrTrammaClient extends MercadoPagoClient
         $result = Serializer::deserializeFromJson(QrTramma::class, $response->getContent());
         $result->setResponse($response);
 
+        // @phpstan-ignore-next-line
         return $result;
     }
 }

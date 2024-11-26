@@ -6,4 +6,4 @@ parameters:
         - '#.* no value type specified in iterable type array#'
         - '#Short ternary operator is not allowed.*#'
         - '#Parameter .* expects string\|null, string\|false given#'
-        - '#.*but returns MercadoPago\\Net\\MPResource#'
+    reportUnmatchedIgnoredErrors: true
