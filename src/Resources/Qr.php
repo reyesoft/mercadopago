@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace MercadoPagoQr\Resources;
 
-use MercadoPago\Net\MPResource;
-
 class Qr
 {
     public ?string $image;
